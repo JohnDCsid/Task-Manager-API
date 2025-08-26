@@ -48,19 +48,19 @@ def create_app(testing: bool = False) -> Flask:
     
     @app.put("/tasks/<int:task_id>")
     def complete_task(task_id: int):
-    task = Task.query.get(task_id)
-    if not task:
-        return {"error": "Task not found"}, 404
-    data = request.get_json(silent=True) or {}
-    if "title" in data:
-        task.title = data["title"]
-    if "completed" in data:
-        task.completed = bool(data["completed"])
-    else:
-        task.completed = True
-    db.session.commit()
-    return jsonify(task.to_dict()), 200
-    
+        task = Task.query.get(task_id)
+        if not task:
+            return {"error": "Task not found"}, 404
+        data = request.get_json(silent=True) or {}
+        if "title" in data:
+            task.title = data["title"]
+        if "completed" in data:
+            task.completed = bool(data["completed"])
+        else:
+            task.completed = True
+        db.session.commit()
+        return jsonify(task.to_dict()), 200
+        
     
     @app.delete("/tasks/<int:task_id>")
     def delete_task(task_id: int):
