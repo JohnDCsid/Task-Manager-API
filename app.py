@@ -2,32 +2,26 @@ from flask import Flask, request, jsonify
 from models import db, Task
 import os
 
-
-
-
 def create_app(testing: bool = False) -> Flask:
     app = Flask(__name__)
-  
-  
+
     # Config
     app.config["SQLALCHEMY_DATABASE_URI"] = (
         "sqlite:///:memory:" if testing else os.getenv("DATABASE_URL", "sqlite:///tasks.db")
     )
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    
-    
+
     db.init_app(app)
-    
-    
+
     with app.app_context():
         db.create_all()
-    
-    
+
+    # Health endpoint
     @app.get("/health")
     def health():
         return {"status": "ok"}, 200
-    
-    
+
+    # Create task
     @app.post("/tasks")
     def create_task():
         data = request.get_json(silent=True) or {}
@@ -38,14 +32,14 @@ def create_app(testing: bool = False) -> Flask:
         db.session.add(task)
         db.session.commit()
         return jsonify(task.to_dict()), 201
-    
-    
+
+    # List tasks
     @app.get("/tasks")
     def list_tasks():
         tasks = Task.query.order_by(Task.created_at.desc()).all()
         return jsonify([t.to_dict() for t in tasks]), 200
-    
-    
+
+    # Complete / update task
     @app.put("/tasks/<int:task_id>")
     def complete_task(task_id: int):
         task = Task.query.get(task_id)
@@ -60,8 +54,8 @@ def create_app(testing: bool = False) -> Flask:
             task.completed = True
         db.session.commit()
         return jsonify(task.to_dict()), 200
-        
-    
+
+    # Delete task
     @app.delete("/tasks/<int:task_id>")
     def delete_task(task_id: int):
         task = Task.query.get(task_id)
@@ -70,12 +64,12 @@ def create_app(testing: bool = False) -> Flask:
         db.session.delete(task)
         db.session.commit()
         return "", 204
-    
-    
+
     return app
-    
-    
-    
+
+
 if __name__ == "__main__":
     app = create_app()
-    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
+    
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
