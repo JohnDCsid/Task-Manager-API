@@ -5,7 +5,7 @@ A simple Flask REST API with **CRUD**, **Docker**, and **CI/CD (GitHub Actions)*
 ---
 
 ## Live Demo
-Try it here: [https://task-manager-api-w10t.onrender.com](https://task-manager-api-w10t.onrender.com)
+Try it here: [https://task-manager-api-w10t.onrender.com]
 
 - Health check: `GET /health`  
 - Tasks CRUD: `/tasks` (GET, POST, PUT, DELETE)
@@ -15,7 +15,7 @@ Try it here: [https://task-manager-api-w10t.onrender.com](https://task-manager-a
 ## Status / Badges
 <!-- Optional: Add CI and coverage badges -->
 [![CI](https://github.com/JohnDCsid/Task-Manager-API/actions/workflows/ci.yml/badge.svg)](https://github.com/JohnDCsid/Task-Manager-API/actions)
-[![Coverage](https://img.shields.io/badge/coverage-0%25-red)](https://github.com/JohnDCsid/Task-Manager-API)
+[![Coverage](https://codecov.io/gh/JohnDCsid/Task-Manager-API/branch/main/graph/badge.svg?token=my_token)](https://codecov.io/gh/JohnDCsid/Task-Manager-API)
 
 ---
 
