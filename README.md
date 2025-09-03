@@ -23,7 +23,7 @@ Try it here: [https://task-manager-api-w10t.onrender.com](https://task-manager-a
 
 ```bash
 # Clone the repo
-git clone https://github.com/<YOUR-USERNAME>/Task-Manager-API.git
+git clone https://github.com/JohnDCsid/Task-Manager-API.git
 cd Task-Manager-API
 
 # Create virtual environment
