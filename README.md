@@ -39,7 +39,18 @@ python app.py
 # API available at: http://localhost:5000
 
 
-##  Testing with curl
+##  Testing & Coverage
+
+Run tests locally with coverage:
+
+pytest --cov=. --maxfail=1 --disable-warnings
+
+
+Generate HTML coverage report:
+
+pytest --cov=. --cov-report=html
+
+## Testing whit curl
 
 # Health check:
 
