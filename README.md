@@ -106,6 +106,8 @@ Full CRUD API for managing tasks
 
 Health check endpoint
 
+Root endpoint with JSON documentation
+
 In-memory SQLite for testing / persistent SQLite for local use
 
 Optional PostgreSQL for production via DATABASE_URL
@@ -113,3 +115,5 @@ Optional PostgreSQL for production via DATABASE_URL
 Dockerized for easy deployment
 
 CI/CD setup via GitHub Actions
+
+Test coverage reporting integrated via Codecov
