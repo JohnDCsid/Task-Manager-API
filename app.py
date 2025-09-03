@@ -16,6 +16,20 @@ def create_app(testing: bool = False) -> Flask:
     with app.app_context():
         db.create_all()
 
+    # Root endpoint
+    @app.get("/")
+    def index():
+        return {
+            "message": "Welcome to Task Manager API 🚀",
+            "available_endpoints": {
+                "health": "GET /health",
+                "list_tasks": "GET /tasks",
+                "create_task": "POST /tasks",
+                "update_task": "PUT /tasks/<id>",
+                "delete_task": "DELETE /tasks/<id>"
+            }
+        }, 200
+
     # Health endpoint
     @app.get("/health")
     def health():
@@ -70,6 +84,5 @@ def create_app(testing: bool = False) -> Flask:
 
 if __name__ == "__main__":
     app = create_app()
-    
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=True)
